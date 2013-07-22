@@ -6,6 +6,7 @@
 * API Clients [Likely mechanisms for existing data collectors (e.g. StatsD, CollectD) to pass data to the API and therefore stored in seperate projects.]
 
 # Stack Assumption:
+* https://github.com/opendais/ubuntu-12.04-chef-solo-bootstrap
 * Chef - Purely for deployment
 * LEMP Stack + Redis
 	* Ubuntu 12.04 LTS [ We currently plan to update with each new LTS release ]
