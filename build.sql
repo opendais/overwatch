@@ -14,10 +14,11 @@ CREATE TABLE `metrics`.`meta` (
         `metric_id` INT NOT NULL AUTO_INCREMENT,
         `name` VARCHAR(255) NOT NULL, /* metric name */
         `device` VARCHAR(255) NOT NULL, /* actual device name, not to be confused with the source_id which is just a shorthand of key+ip */
-        `period` INT NOT NULL,
+        `period` INT DEFAULT 30 NOT NULL, /* defaults to assuming data is reported every 30 seconds */
         `alert_threshold_maximum` INT NOT NULL,
         `alert_threshold_minimum` INT NOT NULL,
-        `decimal_format` BIT(1) NOT NULL,
+        `decimal_format` BIT(1) NOT NULL, /* 0 = integer, 1 = decimal @ 4 digit precision [e.g. 1.0001, 1.2391] */
+	`average_summarize` BIT(1) NOT NULL, /* 0 = Metric @ :30 + Metric @ :00, 1 = (Metric @ :30 + Metric @ :00)/2 */
         PRIMARY KEY (`metric_id`)
 );
 
