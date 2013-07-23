@@ -11,14 +11,16 @@
 
 	define('VERSION', $version);
 
-	$api_call = ucfirst($request_url[2]);
-	$action = $request_url[3];
+	$api_call = strtolower(str_replace(".json",".php",$request_url[2]));
 
 	$response = array();
 
-	if(file_exists(BASE.'classes/' . VERSION . '/api/' . $class_name . '.php')
-	$request = new $object();
-	$request->$action($_GET);
-
+	$target = BASE.'classes/' . VERSION . '/api/' . $api_call;
+	if(file_exists($target)) {
+		require_once($target);
+	}
+	else {
+		header("HTTP/1.0 404 API Object Not Found");die();		
+	}
 	
 ?>
