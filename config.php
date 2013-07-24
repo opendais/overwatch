@@ -1,4 +1,6 @@
 <?php
+	define('START', microtime(true));
+
       	# Class Autoloader
         function class_autoloader($class_name) {
 
@@ -15,10 +17,13 @@
 	# Constants, by environment
 	define('DOMAIN', 'dev.local');
 	define('BASE', '/var/www/'.DOMAIN.'/htdocs/');
+	define('ENCRYPT_COST', 12);
 
         # Load forward compatability password_* functions via https://github.com/ircmaxell/password_compat
         require BASE."lib/password.php";
-
+	
+	# Load utility functions e.g. standard password hash function
+	require BASE."lib/functions.php";
 
         # Database Connection
         $username = 'root';
