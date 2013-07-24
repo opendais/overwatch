@@ -37,5 +37,12 @@ CREATE TABLE `authentication`.`users` (
         `password` VARCHAR(255) NOT NULL, /* Same as key, both the api_key and the password are the same basic idea...fixed length hashes a-hoy */
         PRIMARY KEY(`account_id`),
         INDEX(`email`)
-)
+);
+
+/*
+Generates a test user with the username = admin@localhost, password=vagrant - replace with an appropriate email/password combo for your installation. If you need to generate the hash, feel free to use:
+classes/unstable/api/test.php
+Just modify the $password variable and call the url to get the result. test.php is used to sort out if things are installed correctly (e.g. Calls the MySQL server, tests the password_hash function)
+*/
+INSERT INTO `authentication`.`users` SET `email`='admin@localhost', `password`='$2y$10$ug6YdlBgdvS2DmzIeacrVekKRNyldVn5p3TCMDX33LSQ7gH\/DR2xy';
 
