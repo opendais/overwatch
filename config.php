@@ -1,4 +1,16 @@
 <?php
+      	# Class Autoloader
+        function class_autoloader($class_name) {
+
+                $path = BASE.'classes/' . VERSION . '/src/' . strtolower($class_name) . '.php';
+                if(file_exists($path)) {
+                        require_once $path;
+                }
+                else {
+                        header("HTTP/1.0 404 API Object Not Found");die();
+                }
+        }
+        spl_autoload_register('class_autoloader', true);
 
 	# Constants, by environment
 	define('DOMAIN', 'dev.local');
@@ -17,18 +29,5 @@
 	/* Total: 21,792 data points @ 255.375kb data + meta ~.534kb = ~256kb/metric storage */
 	/* Performance Goal: 10,000 metrics on a $5 VPS from DO */
 
-	# Class Autoloader
-	function class_autoloader($class_name) {
-
-		$path = BASE.'classes/' . VERSION . '/src/' . strtolower($class_name) . '.php';
-
-		if(file_exists($path)) {
-			require_once $path;
-		}
-		else {
-			header("HTTP/1.0 404 API Object Not Found");die();
-		}
-	}
-	spl_autoload_register('class_autoloader', true);
 
 ?>

@@ -1,8 +1,6 @@
 <?php 
 	$request_url = explode('/', $_SERVER['REQUEST_URI']);
 
-	require_once('config.php');
-
 	$version = $request_url[1]; 
 	if(!in_array($version, array('unstable'))) {
 		header("HTTP/1.0 404 API Object Not Found");
@@ -15,6 +13,7 @@
 
 	$response = array();
 
+	require_once('config.php');
 	$target = BASE.'classes/' . VERSION . '/api/' . $api_call;
 	if(file_exists($target)) {
 		require_once($target);
