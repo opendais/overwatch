@@ -5,9 +5,10 @@
 		return $p;
 	}
 
-	function display_api_call($return) {
+	function display_api_call($return, $status=200) {
 		$end = microtime(true);
         	$return['runtime_in_seconds'] = $end-START;
+		$return['status'] = $status;
 	        echo json_encode($return);
 	}
 ?>

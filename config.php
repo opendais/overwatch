@@ -9,7 +9,8 @@
                         require_once $path;
                 }
                 else {
-                        header("HTTP/1.0 404 API Object Not Found");die();
+                        header("HTTP/1.0 404 API Object Not Found");
+			exit(0);
                 }
         }
         spl_autoload_register('class_autoloader', true);
@@ -41,4 +42,3 @@
 	/* Performance Goal: 10,000 metrics on a $5 VPS from DO */
 
 
-?>
