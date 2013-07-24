@@ -17,8 +17,14 @@
 		
 		function query($sql, $parameters = array(), $lazy = true) {
 			/* http://dev.mysql.com/doc/refman/5.1/en/query-cache-operation.html - different case, doesn't cache*/
-			$sth = $this->dbh->prepare(strtolower($sql), array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
-			$sth->execute($parameters);
+			try {
+				$sth = $this->dbh->prepare(strtolower($sql), array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
+				$sth->execute($parameters);
+			}
+			catch (PDOException $E) {
+				trigger_error("DAL failed to perform --$sql;-- with $E", E_USER_ERROR);
+                                die();
+			}
 			
 			if($lazy)
 				return $sth->fetchAll(PDO::FETCH_ASSOC);
