@@ -16,11 +16,17 @@
 	define('DOMAIN', 'dev.local');
 	define('BASE', '/var/www/'.DOMAIN.'/htdocs/');
 
+        # Load forward compatability password_* functions via https://github.com/ircmaxell/password_compat
+        require BASE."lib/password.php";
+
+
         # Database Connection
         $username = 'root';
         $password = 'vagrant';
         $hostname = 'localhost';
         $DAL = new DAL($username, $password, $hostname);
+	unset($password); # destroy password, username variables since they are commonly used words and related to authentication.
+	unset($username);
 
 	# Summarize Rate
 	$Today = 0; /* 2880 data points [24*120] */
