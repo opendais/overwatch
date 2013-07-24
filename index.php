@@ -16,9 +16,7 @@
 	require_once('config.php');
 	$target = BASE.'classes/' . VERSION . '/api/' . $api_call;
 	if(file_exists($target)) {
-		echo 'test';
 		require_once($target);
-		echo 't2';
 	}
 	else {
 		header("HTTP/1.0 404 API Object Not Found");die();		
